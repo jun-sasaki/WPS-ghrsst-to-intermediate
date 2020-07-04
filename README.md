@@ -46,3 +46,8 @@ need to make to compile the program.
 Bart Brashers
 bbrashers@ramboll.com
 2020-06-02
+
+Modified for intel compiler and tcsh
+by Jun Sasaki on July 4, 2020
+
+tcsh is required (does not work on csh).

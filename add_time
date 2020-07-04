@@ -1,4 +1,4 @@
-#!/bin/csh -f
+#!/bin/tcsh -f
 #
 if ($#argv == 0 | $1 =~ -*h*) then
     usage:

@@ -1,13 +1,14 @@
-FC      = pgf90
-FFLAGS  = -g 
-FFLAGS += -tp=istanbul
-FFLAGS += -mcmodel=medium
+FC      = ifort
+FFLAGS = -O3 -mcmodel=large -fPIC -xHost 
+#FFLAGS  = -g
+#FFLAGS += -tp=istanbul
+#FFLAGS += -mcmodel=medium
 #FFLAGS += -Kieee                  # use exact IEEE math
-FFLAGS += -Mbounds                # for bounds checking/debugging
+#FFLAGS += -Mbounds                # for bounds checking/debugging
 #FFLAGS += -Ktrap=fp               # trap floating point exceptions
-FFLAGS += -Bstatic_pgi            # to use static PGI libraries
+#FFLAGS += -Bstatic_pgi            # to use static PGI libraries
 #FFLAGS += -Bstatic                # to use static netCDF libraries
-FFLAGS += -mp=nonuma -nomp        # fix for "can't find libnuma.so"
+#FFLAGS += -mp=nonuma -nomp        # fix for "can't find libnuma.so"
 
 # NETCDF should be compiled with the same compiler as this program
 
@@ -23,7 +24,7 @@ PROGRAM = ghrsst-to-intermediate
 SOURCES = ghrsst-to-intermediate.f90 
 OBJECTS = $(SOURCES:.f90=.o)
 
-TODAY   = 2020-04-16
+TODAY   = 2020-07-03
 VERSION = 1.0
 
 $(PROGRAM): $(OBJECTS)

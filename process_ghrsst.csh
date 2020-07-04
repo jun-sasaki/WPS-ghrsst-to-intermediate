@@ -1,4 +1,4 @@
-#!/bin/csh -f
+#!/bin/tcsh -f
 
 if ($#argv == 0 | "$1" =~ -*h*) then
     echo "Usage: $0:t filelist"
@@ -39,7 +39,7 @@ set ghrsst_files = (`cat $1`)
 
 foreach file ($ghrsst_files)
     if ($verb) echo "Converting $file"
-    ghrsst-to-intermediate $debug --nolandsea --sst -g geo_em.d01.nc $file >>&! process_ghrsst.log
+    ./ghrsst-to-intermediate $debug --nolandsea --sst -g geo_em.d01.nc $file >>&! process_ghrsst.log
 end
 
 set files = (SST:*) # FIXME: this needs to be more general, to handle SST: and SEAICE:
@@ -70,20 +70,20 @@ foreach i (`seq 1 $n`)
 
     if ($verb) echo -n "between $time1 and $time2, "
 
-    set now  = `add_time -1 $time1 $interval_hours` # first output, YYYYMMDDHH
-    set end2 = `add_time -1 $time2 0` # convert from YYYY-MM-DD_HH to YYYYMMDDHH
+    set now  = `./add_time -1 $time1 $interval_hours` # first output, YYYYMMDDHH
+    set end2 = `./add_time -1 $time2 0` # convert from YYYY-MM-DD_HH to YYYYMMDDHH
 
     if ($verb) echo "starting at $now, ending $end2"
 
     while ($now < $end2) # needs YYYYMMDDHH to loop correctly
 
-	set timeOut = `add_time --wrf $now 0` # convert to YYYY-MM-DD_HH
+	set timeOut = `./add_time --wrf $now 0` # convert to YYYY-MM-DD_HH
 	
 	if ($verb) echo "    Creating ${param}:$timeOut from $files[$i] and $files[$ip1]"
 	interp-intermediate $debug -i $files[$i] $files[$ip1] -o ${param}:$timeOut
 	echo Interpolated to create ${param}:$timeOut >>&! process_ghrsst.log
 
-	set now = `add_time -1 $now $interval_hours` # YYYYMMDDHH
+	set now = `./add_time -1 $now $interval_hours` # YYYYMMDDHH
 
     end
 end
