@@ -48,8 +48,5 @@ bbrashers@ramboll.com
 2020-06-02
 
 # Readme by Jun Sasaki
-**July 4, 2020**
-Modified for Intel compiler in makefile.
-Adjusted for tcsh and added ./ when invoking executables.
-
-tcsh is required (does not work on csh).
+**July 4, 2020** <br>
+(1) Modified for Intel compiler in makefile. (2) Adjusted for tcsh and added ./ when invoking executables. (3) tcsh is required (does not work on csh).
